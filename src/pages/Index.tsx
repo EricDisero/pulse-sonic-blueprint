@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowRight } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
@@ -22,6 +21,18 @@ const Index = () => {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      
+      // Animate elements when they come into view
+      const animateElements = document.querySelectorAll('[data-animate]');
+      animateElements.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        
+        if (rect.top <= windowHeight * 0.75) {
+          element.classList.add('animate-fade-in');
+          element.removeAttribute('data-animate');
+        }
+      });
     };
     
     window.addEventListener("scroll", handleScroll);
@@ -30,13 +41,13 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
-      {/* Header */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-black/80 backdrop-blur-md shadow-lg" : "bg-transparent"
+      {/* Glass-effect header */}
+      <header className={`sticky-header transition-all duration-300 ${
+        scrolled ? "sticky-header-scrolled" : "bg-transparent"
       }`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="text-2xl font-bold text-white">
-            <span className="text-pink-500">Pulse</span> Academy
+          <div className="text-2xl font-bold">
+            <span className="text-gradient">Pulse</span> Academy
           </div>
           <nav className="hidden md:flex space-x-6">
             <a href="#how-it-works" className="text-white hover:text-pink-500 transition-colors">
@@ -52,7 +63,7 @@ const Index = () => {
               FAQ
             </a>
           </nav>
-          <Button className="bg-pink-500 hover:bg-pink-600 text-white">
+          <Button className="pulse-cta bg-pink-500 hover:bg-pink-600 text-white">
             Book Now
           </Button>
         </div>

@@ -1,37 +1,82 @@
 
-import React from "react";
+import React, { useRef, useEffect } from "react";
 
-const InstructorCard = ({ name, realName, credentials, liveBadge, liveBadgeText }: {
+interface InstructorCardProps {
   name: string;
   realName?: string;
   credentials: string[];
   liveBadge: boolean;
   liveBadgeText: string;
+}
+
+const InstructorCard: React.FC<InstructorCardProps> = ({ 
+  name, 
+  realName, 
+  credentials, 
+  liveBadge, 
+  liveBadgeText 
 }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  
+  // 3D parallax effect
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = card.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      const percentX = (e.clientX - centerX) / (rect.width / 2);
+      const percentY = (e.clientY - centerY) / (rect.height / 2);
+      
+      const maxRotate = 5; // maximum rotation in degrees
+      
+      card.style.transform = `perspective(1000px) rotateY(${percentX * maxRotate}deg) rotateX(${-percentY * maxRotate}deg) translateZ(10px)`;
+    };
+    
+    const handleMouseLeave = () => {
+      card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateZ(0)';
+    };
+    
+    card.addEventListener('mousemove', handleMouseMove);
+    card.addEventListener('mouseleave', handleMouseLeave);
+    
+    return () => {
+      card.removeEventListener('mousemove', handleMouseMove);
+      card.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
+
   return (
     <div className="relative group">
       <div className="absolute inset-0 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-lg blur-sm transform group-hover:scale-[1.02] transition-transform"></div>
-      <div className="relative bg-gray-900/80 backdrop-blur-sm p-6 rounded-lg border border-gray-800 h-full hover:-translate-y-1 transition-all">
+      <div 
+        ref={cardRef}
+        className="relative glass-effect p-6 rounded-lg border border-pink-500/30 h-full transition-all duration-300"
+        style={{ transformStyle: 'preserve-3d' }}
+      >
         {liveBadge && (
-          <div className="absolute -top-3 -right-3 bg-pink-500 text-white text-xs py-1 px-3 rounded-full">
+          <div className="absolute -top-3 -right-3 bg-gradient-to-r from-pink-500 to-pink-600 text-white text-xs py-1 px-3 rounded-full z-20 group-hover:scale-110 transition-transform">
             <div className="flex items-center">
-              <div className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></div>
+              <div className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse-glow"></div>
               <span>{liveBadgeText}</span>
             </div>
           </div>
         )}
         
         <div className="flex items-center mb-6">
-          <div className="w-16 h-16 rounded-full bg-gray-700"></div>
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-500 to-purple-500 flex-shrink-0 animate-pulse-glow"></div>
           <div className="ml-4">
-            <h3 className="text-xl font-bold text-white">{name}</h3>
+            <h3 className="text-xl font-bold text-white group-hover:text-pink-500 transition-colors">{name}</h3>
             {realName && <p className="text-gray-400">({realName})</p>}
           </div>
         </div>
         
         <ul className="space-y-2">
           {credentials.map((credential, index) => (
-            <li key={index} className="flex items-start">
+            <li key={index} className="flex items-start hover-scale">
               <svg className="w-5 h-5 text-pink-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
@@ -46,18 +91,13 @@ const InstructorCard = ({ name, realName, credentials, liveBadge, liveBadgeText 
 
 const InstructorSection = () => {
   return (
-    <section id="instructors" className="relative py-20 overflow-hidden">
-      {/* Background with gradient */}
-      <div className="absolute inset-0 bg-black z-0">
-        <div className="absolute left-1/3 bottom-0 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[150px]"></div>
-      </div>
-      
+    <section id="instructors" className="relative py-20 overflow-hidden gradient-social section-wave-top">
       <div className="container mx-auto px-4 relative z-10">
-        <h2 className="text-4xl font-bold text-center text-white mb-12">
+        <h2 className="text-4xl font-bold text-center text-white mb-12 animate-fade-in">
           The Team Behind This
         </h2>
         
-        <p className="text-center text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+        <p className="text-center text-xl text-gray-300 mb-12 max-w-3xl mx-auto animate-fade-in">
           You'll be learning from people who've actually done what you're trying to do:
         </p>
         

@@ -5,11 +5,23 @@ import { ArrowRight } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center pt-16">
-      {/* Background with gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-black/95 z-0">
-        {/* Pink glow effect */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-pink-500/20 rounded-full blur-[100px] opacity-50"></div>
+    <section className="relative min-h-screen flex items-center pt-16 gradient-hero">
+      {/* Ambient particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(50)].map((_, i) => (
+          <div 
+            key={i}
+            className="absolute bg-pink-500 rounded-full opacity-10 animate-float"
+            style={{
+              width: Math.random() * 4 + 1 + 'px',
+              height: Math.random() * 4 + 1 + 'px',
+              left: Math.random() * 100 + '%',
+              top: Math.random() * 100 + '%',
+              animationDelay: Math.random() * 5 + 's',
+              animationDuration: Math.random() * 10 + 5 + 's'
+            }}
+          />
+        ))}
       </div>
       
       <div className="container mx-auto px-4 py-20 relative z-10">
@@ -19,11 +31,15 @@ const HeroSection = () => {
             Been stuck on "almost there" mixes for months?
           </p>
           
-          {/* Headline */}
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
-            <span className="block">Transform Your Mixes Into</span>
-            <span className="block">Label-Ready Tracks</span>
-            <span className="block text-xl md:text-2xl mt-2 text-gray-300">
+          {/* Headline - with variable font animation on hover */}
+          <h1 className="group">
+            <span className="text-4xl md:text-6xl font-bold mb-2 block animate-fade-in transition-all duration-300 group-hover:tracking-tight">
+              Transform Your Mixes Into
+            </span>
+            <span className="text-4xl md:text-6xl font-bold block animate-fade-in transition-all duration-300 group-hover:text-pink-500">
+              Label-Ready Tracks
+            </span>
+            <span className="block text-xl md:text-2xl mt-2 text-gray-300 animate-fade-in">
               (In One Free 30-Minute Session—No Fluff, No Sales Pitch)
             </span>
           </h1>
@@ -33,14 +49,12 @@ const HeroSection = () => {
             The same approach that's helped producers achieve 900,000+ monthly listeners and secure major label deals.
           </p>
           
-          {/* CTA */}
+          {/* Pulsing CTA */}
           <div className="relative group inline-block animate-fade-in">
-            <Button className="bg-pink-500 hover:bg-pink-600 text-white text-lg py-6 px-8 rounded-md transition-all duration-300 group-hover:scale-[1.02]">
+            <Button className="pulse-cta bg-pink-500 hover:bg-pink-600 text-white text-lg py-6 px-8 rounded-md transition-all duration-300 group-hover:scale-[1.02]">
               CLAIM YOUR 30-MIN ROADMAP
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            {/* Glow effect */}
-            <div className="absolute inset-0 bg-pink-500 rounded-md blur-md opacity-30 transition-opacity group-hover:opacity-50"></div>
           </div>
           
           {/* Micro-promise */}
@@ -50,7 +64,7 @@ const HeroSection = () => {
         </div>
       </div>
       
-      {/* Scroll indicator */}
+      {/* Scroll indicator with smooth fade-out on scroll */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
         <span className="text-gray-500 text-sm mb-2">Scroll to learn more</span>
         <svg className="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

@@ -53,6 +53,7 @@
 
   body {
     @apply bg-background text-foreground;
+    scroll-behavior: smooth;
   }
 
   /* Custom fonts for headings */
@@ -74,6 +75,46 @@
     100% { transform: scale(1); opacity: 1; }
   }
 
+  @keyframes pulse-glow {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+  }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-gradient-shift {
+    animation: gradient-shift 15s ease infinite;
+    background-size: 200% 200%;
+  }
+
+  .animate-rotate {
+    animation: rotate 10s linear infinite;
+  }
+
   .animate-fade-in {
     animation: fade-in 0.8s ease-out forwards;
   }
@@ -85,5 +126,139 @@
 
   .hover-scale {
     @apply transition-transform duration-200 hover:scale-105;
+  }
+  
+  /* Glass effects */
+  .glass-effect {
+    @apply backdrop-blur-lg bg-white/5 border border-white/10;
+  }
+  
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-pink-400;
+  }
+  
+  /* Fluid section transitions */
+  .section-wave-top {
+    position: relative;
+  }
+  
+  .section-wave-top::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23000'/%3E%3C/svg%3E");
+    background-size: cover;
+    z-index: 1;
+  }
+  
+  /* Scrolling gradients */
+  .gradient-hero {
+    @apply bg-gradient-to-br from-black via-[#1a0122] to-[#240027] bg-fixed;
+    position: relative;
+  }
+  
+  .gradient-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.15), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .gradient-problem {
+    @apply bg-gradient-to-br from-black via-[#1f011f] to-[#270027] bg-fixed;
+  }
+  
+  .gradient-method {
+    @apply bg-gradient-to-br from-black via-[#1a0027] to-[#1d0024] bg-fixed;
+  }
+  
+  .gradient-social {
+    @apply bg-gradient-to-br from-black via-[#1a0122] to-[#270019] bg-fixed;
+  }
+  
+  .gradient-offer {
+    @apply bg-gradient-to-br from-black via-[#1a0122] to-[#27001e] bg-fixed;
+  }
+  
+  .gradient-final {
+    @apply bg-gradient-to-br from-black via-[#1a0122] to-[#270027] bg-fixed animate-gradient-shift;
+  }
+  
+  /* Sticky header */
+  .sticky-header {
+    @apply fixed top-0 left-0 right-0 z-50 transition-all duration-300;
+  }
+  
+  .sticky-header-scrolled {
+    @apply bg-black/80 backdrop-blur-md shadow-lg;
+  }
+  
+  /* Pulsing CTA */
+  .pulse-cta {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .pulse-cta::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(90deg, #ff33cc, #ff66b2, #ff33cc);
+    background-size: 200% 100%;
+    border-radius: 0.5rem;
+    z-index: -1;
+    animation: gradient-shift 3s ease infinite;
+    opacity: 0.7;
+  }
+  
+  .pulse-cta:hover::before {
+    animation-duration: 1.5s;
+    opacity: 1;
+  }
+  
+  /* Orbital button */
+  .orbital-button {
+    position: relative;
+  }
+  
+  .orbital-button::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: var(--radius);
+    background: conic-gradient(
+      from 0deg, 
+      rgba(255, 51, 204, 0.8),
+      rgba(230, 0, 255, 0.8),
+      rgba(153, 51, 255, 0.8),
+      rgba(255, 51, 204, 0.8)
+    );
+    animation: rotate 4s linear infinite;
+    opacity: 0.7;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+  }
+  
+  .orbital-button:hover::before {
+    animation-duration: 2s;
+    opacity: 1;
+  }
+  
+  /* Scroll snap container */
+  .snap-container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+  }
+  
+  .snap-section {
+    scroll-snap-align: start;
+    height: 100vh;
   }
 }

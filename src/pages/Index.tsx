@@ -50,20 +50,20 @@ const Index = () => {
             <span className="text-gradient">Pulse</span> Academy
           </div>
           <nav className="hidden md:flex space-x-6">
-            <a href="#how-it-works" className="text-white hover:text-pink-500 transition-colors">
+            <a href="#how-it-works" className="text-white hover:text-violet-400 transition-colors">
               How It Works
             </a>
-            <a href="#testimonials" className="text-white hover:text-pink-500 transition-colors">
+            <a href="#testimonials" className="text-white hover:text-violet-400 transition-colors">
               Testimonials
             </a>
-            <a href="#instructors" className="text-white hover:text-pink-500 transition-colors">
+            <a href="#instructors" className="text-white hover:text-violet-400 transition-colors">
               Instructors
             </a>
-            <a href="#faq" className="text-white hover:text-pink-500 transition-colors">
+            <a href="#faq" className="text-white hover:text-violet-400 transition-colors">
               FAQ
             </a>
           </nav>
-          <Button className="pulse-cta bg-pink-500 hover:bg-pink-600 text-white">
+          <Button className="pulse-cta bg-violet-700 hover:bg-violet-800 text-white">
             Book Now
           </Button>
         </div>

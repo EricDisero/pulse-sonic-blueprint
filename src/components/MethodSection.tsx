@@ -32,9 +32,12 @@ const MethodSection = () => {
     <section id="how-it-works" className="method-section relative py-20 overflow-hidden gradient-method">
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center text-white mb-8 animate-fade-in">
-            How We Do This: <span className="text-gradient">The Stem-Based Reverse Engineering Method</span>
+          <h2 className="text-4xl font-bold text-center text-white mb-3 animate-fade-in">
+            How We Do This: 
           </h2>
+          <h3 className="text-3xl font-bold text-center text-gradient mb-8 animate-fade-in">
+            The Stem-Based Reverse Engineering Method
+          </h3>
           
           <p className="text-gray-300 text-center mb-12 max-w-3xl mx-auto animate-fade-in">
             I developed this approach after years of frustration with traditional production education. Instead of subjective opinions, we focus on measurable elements that actually make tracks sound professional.
@@ -85,12 +88,6 @@ const MethodSection = () => {
             </div>
           </div>
           
-          {/* Hidden Audio Elements */}
-          <audio className="alissa-before-audio" src="https://files.catbox.moe/hug00i.mp3"></audio>
-          <audio className="alissa-after-audio" src="https://files.catbox.moe/kxdfc4.mp3"></audio>
-          <audio className="paul-before-audio" src="https://files.catbox.moe/xeyyvx.mp3"></audio>
-          <audio className="paul-after-audio" src="https://files.catbox.moe/72bdae.mp3"></audio>
-          
           {/* Method Steps */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Step 1 */}
@@ -98,9 +95,9 @@ const MethodSection = () => {
               ref={el => stepsRef.current[0] = el} 
               className="relative group opacity-0"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-violet-500/20 rounded-lg blur-sm transform group-hover:scale-105 transition-transform"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-violet-900/20 rounded-lg blur-sm transform group-hover:scale-105 transition-transform"></div>
               <div className="relative glass-effect p-6 rounded-lg h-full hover:-translate-y-1 transition-all duration-500">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center mb-4 animate-pulse-glow group-hover:animate-none">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-800 to-violet-700 flex items-center justify-center mb-4 animate-pulse-glow group-hover:animate-none">
                   <span className="text-white font-bold text-2xl">1</span>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2 flex items-center group-hover:text-violet-400 transition-colors">
@@ -144,9 +141,9 @@ const MethodSection = () => {
               className="relative group opacity-0"
               style={{ animationDelay: "0.2s" }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-violet-500/20 rounded-lg blur-sm transform group-hover:scale-105 transition-transform"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-violet-900/20 rounded-lg blur-sm transform group-hover:scale-105 transition-transform"></div>
               <div className="relative glass-effect p-6 rounded-lg h-full hover:-translate-y-1 transition-all duration-500">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center mb-4 animate-pulse-glow group-hover:animate-none">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-800 to-violet-700 flex items-center justify-center mb-4 animate-pulse-glow group-hover:animate-none">
                   <span className="text-white font-bold text-2xl">2</span>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2 flex items-center group-hover:text-violet-400 transition-colors">
@@ -190,9 +187,9 @@ const MethodSection = () => {
               className="relative group opacity-0"
               style={{ animationDelay: "0.4s" }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-violet-500/20 rounded-lg blur-sm transform group-hover:scale-105 transition-transform"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-violet-900/20 rounded-lg blur-sm transform group-hover:scale-105 transition-transform"></div>
               <div className="relative glass-effect p-6 rounded-lg h-full hover:-translate-y-1 transition-all duration-500">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center mb-4 animate-pulse-glow group-hover:animate-none">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-800 to-violet-700 flex items-center justify-center mb-4 animate-pulse-glow group-hover:animate-none">
                   <span className="text-white font-bold text-2xl">3</span>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2 flex items-center group-hover:text-violet-400 transition-colors">
@@ -233,10 +230,10 @@ const MethodSection = () => {
         </div>
       </div>
       
-      {/* Section divider */}
+      {/* Section divider - fixed */}
       <div className="absolute bottom-0 left-0 right-0 section-divider">
         <svg className="section-divider-tilt" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M1200 0L0 0 892.25 114.72 1200 0z"></path>
+          <path d="M1200 0L0 0 892.25 114.72 1200 0z" fill="currentColor"></path>
         </svg>
       </div>
       

@@ -7,11 +7,20 @@ import { Label } from "@/components/ui/label";
 const WhoIsThisForSection = () => {
   const [selectedStruggle, setSelectedStruggle] = useState<string | null>(null);
   
+  // Custom responses for each struggle type
+  const struggleResponses = {
+    "low-end": "Great—here's how we help with creating powerful low end! Our Cascade Splitter isolates kick and bass frequencies, giving you precise measurement targets that make your low end punch through any system.",
+    "amateur": "Perfect—we specialize in professional-sounding mixes! Our reference analysis will show you exactly where your mix differs from commercial releases and give you exact targets to hit.",
+    "space": "Absolutely—creating depth and space is our specialty! We'll show you how to analyze stereo imaging and reverb decay patterns from professional tracks, then apply them to your own.",
+    "submissions": "That's exactly why we developed this system! Our analysis will identify what labels are specifically looking for in your genre and give you a practical roadmap to meet those standards.",
+    "other": "I'd love to hear more about your specific challenge! In our session, we'll customize our approach to address your unique situation with tailored measurements and techniques.",
+  };
+  
   return (
     <section className="relative py-20 overflow-hidden">
-      {/* Background with gradient */}
+      {/* Background with gradient - darker purple */}
       <div className="absolute inset-0 bg-black z-0">
-        <div className="absolute right-0 top-1/4 w-[400px] h-[400px] bg-pink-500/10 rounded-full blur-[100px]"></div>
+        <div className="absolute right-0 top-1/4 w-[400px] h-[400px] bg-purple-900/10 rounded-full blur-[100px]"></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
@@ -53,20 +62,11 @@ const WhoIsThisForSection = () => {
               </div>
             </RadioGroup>
             
-            {/* Dynamic content based on selection */}
+            {/* Dynamic content based on selection - with unique responses */}
             {selectedStruggle && (
-              <div className="mt-6 p-4 bg-pink-500/10 border border-pink-500/30 rounded-md">
+              <div className="mt-6 p-4 bg-purple-900/10 border border-purple-500/30 rounded-md">
                 <p className="text-lg font-medium mb-2">
-                  Great—here's how we help with {
-                    selectedStruggle === "low-end" ? "creating powerful low end" :
-                    selectedStruggle === "amateur" ? "professional-sounding mixes" :
-                    selectedStruggle === "space" ? "creating depth and space" :
-                    selectedStruggle === "submissions" ? "label-ready productions" :
-                    "your specific challenge"
-                  }...
-                </p>
-                <p className="text-gray-300">
-                  We provide specific technical measurements and reference analysis for exactly this issue, so you'll know the precise targets to aim for in your mixes.
+                  {struggleResponses[selectedStruggle as keyof typeof struggleResponses]}
                 </p>
               </div>
             )}
@@ -162,46 +162,74 @@ const WhoIsThisForSection = () => {
             </ul>
           </div>
           
-          {/* Social Proof */}
+          {/* Producer Testimonials - with thumbnails */}
           <div className="space-y-6">
             <h3 className="text-2xl font-bold mb-6 text-white">
-              Social Proof Alignment
+              What Our Students Are Saying
             </h3>
             
             <div className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-lg p-6">
-              <p className="font-medium text-gray-300 mb-2">
-                <span className="text-white">Alex shared this with me last week:</span>
-              </p>
-              <blockquote className="italic text-pink-300 text-lg">
-                "After 5 years of hitting the same wall with my productions, I finally saw exactly what was missing in my mixes. I made more progress in 2 weeks than in the previous 2 years."
-              </blockquote>
+              <div className="flex items-start space-x-4">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-violet-500 flex-shrink-0 flex items-center justify-center text-white font-bold text-lg">
+                  AX
+                </div>
+                <div>
+                  <p className="font-medium text-gray-300 mb-2">
+                    <span className="text-white">Alex shared this with me last week:</span>
+                  </p>
+                  <blockquote className="italic text-pink-300 text-lg">
+                    "After 5 years of hitting the same wall with my productions, I finally saw exactly what was missing in my mixes. I made more progress in 2 weeks than in the previous 2 years."
+                  </blockquote>
+                </div>
+              </div>
             </div>
             
             <div className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-lg p-6">
-              <p className="font-medium text-gray-300 mb-2">
-                <span className="text-white">Oscar, who went from 3,000 to 900,000 monthly listeners, told me:</span>
-              </p>
-              <blockquote className="italic text-pink-300 text-lg">
-                "The objective analysis changed everything about how I approach production. For the first time, I could see exactly why my tracks weren't matching commercial releases."
-              </blockquote>
+              <div className="flex items-start space-x-4">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-violet-500 flex-shrink-0 flex items-center justify-center text-white font-bold text-lg">
+                  OS
+                </div>
+                <div>
+                  <p className="font-medium text-gray-300 mb-2">
+                    <span className="text-white">Oscar, who went from 3,000 to 900,000 monthly listeners, told me:</span>
+                  </p>
+                  <blockquote className="italic text-pink-300 text-lg">
+                    "The objective analysis changed everything about how I approach production. For the first time, I could see exactly why my tracks weren't matching commercial releases."
+                  </blockquote>
+                </div>
+              </div>
             </div>
             
             <div className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-lg p-6">
-              <p className="font-medium text-gray-300 mb-2">
-                <span className="text-white">Sarah, who used to spend weeks on a single mix:</span>
-              </p>
-              <blockquote className="italic text-pink-300 text-lg">
-                "I used to never feel satisfied with my mixes. Now I know exactly what to measure, what to listen for, and how to fix issues methodically. My completion rate has tripled."
-              </blockquote>
+              <div className="flex items-start space-x-4">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-violet-500 flex-shrink-0 flex items-center justify-center text-white font-bold text-lg">
+                  SH
+                </div>
+                <div>
+                  <p className="font-medium text-gray-300 mb-2">
+                    <span className="text-white">Sarah, who used to spend weeks on a single mix:</span>
+                  </p>
+                  <blockquote className="italic text-pink-300 text-lg">
+                    "I used to never feel satisfied with my mixes. Now I know exactly what to measure, what to listen for, and how to fix issues methodically. My completion rate has tripled."
+                  </blockquote>
+                </div>
+              </div>
             </div>
             
             <div className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-lg p-6">
-              <p className="font-medium text-gray-300 mb-2">
-                <span className="text-white">Marco sent me this after his first label signing:</span>
-              </p>
-              <blockquote className="italic text-pink-300 text-lg">
-                "I sent my first track using this method to a label I'd been trying to sign with for years. They responded within hours asking for more music. The difference in quality was that dramatic."
-              </blockquote>
+              <div className="flex items-start space-x-4">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-violet-500 flex-shrink-0 flex items-center justify-center text-white font-bold text-lg">
+                  MC
+                </div>
+                <div>
+                  <p className="font-medium text-gray-300 mb-2">
+                    <span className="text-white">Marco sent me this after his first label signing:</span>
+                  </p>
+                  <blockquote className="italic text-pink-300 text-lg">
+                    "I sent my first track using this method to a label I'd been trying to sign with for years. They responded within hours asking for more music. The difference in quality was that dramatic."
+                  </blockquote>
+                </div>
+              </div>
             </div>
           </div>
         </div>

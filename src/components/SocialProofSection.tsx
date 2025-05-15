@@ -1,23 +1,32 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const testimonials = [
   {
     text: "My mix finally sounds like a real release. Completely night and day.",
-    author: "Beat Fortress"
+    author: "Beat Fortress",
+    initials: "BF"
   },
   {
     text: "I have a client drooling over a mix purely from using this approach.",
-    author: "Benno"
+    author: "Benno",
+    initials: "BE"
   },
   {
     text: "Woke up still buzzing that I can do something at this level.",
-    author: "Rudo"
+    author: "Rudo",
+    initials: "RD"
   },
   {
     text: "The chord progression analyzer saved me months of trial and error - my songs finally sound rich and professional.",
-    author: "Taylor"
+    author: "Taylor",
+    initials: "TY"
   }
+];
+
+const labelLogos = [
+  "Sony Music", "Universal Music", "Warner Records", "Atlantic Records",
+  "Spinnin' Records", "Armada Music", "OWSLA", "Ministry of Sound" 
 ];
 
 const SocialProofSection = () => {
@@ -33,9 +42,9 @@ const SocialProofSection = () => {
   
   return (
     <section id="testimonials" className="relative py-20 overflow-hidden">
-      {/* Background with gradient */}
+      {/* Background with gradient - darker */}
       <div className="absolute inset-0 bg-black z-0">
-        <div className="absolute right-1/3 top-1/2 w-[500px] h-[500px] bg-violet-800/10 rounded-full blur-[150px]"></div>
+        <div className="absolute right-1/3 top-1/2 w-[500px] h-[500px] bg-violet-900/10 rounded-full blur-[150px]"></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
@@ -69,7 +78,9 @@ const SocialProofSection = () => {
           
           <div className="relative bg-gray-900/60 backdrop-blur-sm p-8 rounded-lg glass-effect">
             <div className="flex items-start mb-4 space-x-4">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-violet-500 flex-shrink-0"></div>
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-violet-500 flex-shrink-0 flex items-center justify-center text-white font-bold text-xl">
+                {testimonials[activeTestimonial].initials}
+              </div>
               <blockquote className="text-xl text-violet-300 italic">
                 "{testimonials[activeTestimonial].text}"
                 <p className="text-white font-medium mt-2">
@@ -112,7 +123,7 @@ const SocialProofSection = () => {
         </div>
         
         {/* Success Stories */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto mb-16">
           <h3 className="text-2xl font-bold text-center text-white mb-8">
             Success Stories
           </h3>
@@ -151,12 +162,59 @@ const SocialProofSection = () => {
             </div>
           </div>
         </div>
+        
+        {/* Labels We've Worked With Scroller */}
+        <div className="max-w-5xl mx-auto mb-16">
+          <h3 className="text-2xl font-bold text-center text-white mb-8">
+            Labels We've Worked Directly With
+          </h3>
+          
+          {/* Logo scroller - row 1 */}
+          <div className="logo-scroller mb-8">
+            <div className="logo-scroller-mask logo-scroller-mask-left"></div>
+            <div className="logo-scroller-container animate-scroll">
+              {/* First set of logos */}
+              {labelLogos.map((logo, index) => (
+                <div key={`row1-1-${index}`} className="flex-shrink-0 mx-4 w-24 h-16 bg-gray-800/50 rounded flex items-center justify-center text-white font-bold text-xs p-2 text-center">
+                  {logo}
+                </div>
+              ))}
+              {/* Duplicate logos for seamless loop */}
+              {labelLogos.map((logo, index) => (
+                <div key={`row1-2-${index}`} className="flex-shrink-0 mx-4 w-24 h-16 bg-gray-800/50 rounded flex items-center justify-center text-white font-bold text-xs p-2 text-center">
+                  {logo}
+                </div>
+              ))}
+            </div>
+            <div className="logo-scroller-mask logo-scroller-mask-right"></div>
+          </div>
+          
+          {/* Logo scroller - row 2 (reversed) */}
+          <div className="logo-scroller">
+            <div className="logo-scroller-mask logo-scroller-mask-left"></div>
+            <div className="logo-scroller-container animate-scroll-reverse">
+              {/* First set of logos */}
+              {labelLogos.reverse().map((logo, index) => (
+                <div key={`row2-1-${index}`} className="flex-shrink-0 mx-4 w-24 h-16 bg-gray-800/50 rounded flex items-center justify-center text-white font-bold text-xs p-2 text-center">
+                  {logo}
+                </div>
+              ))}
+              {/* Duplicate logos for seamless loop */}
+              {labelLogos.map((logo, index) => (
+                <div key={`row2-2-${index}`} className="flex-shrink-0 mx-4 w-24 h-16 bg-gray-800/50 rounded flex items-center justify-center text-white font-bold text-xs p-2 text-center">
+                  {logo}
+                </div>
+              ))}
+            </div>
+            <div className="logo-scroller-mask logo-scroller-mask-right"></div>
+          </div>
+        </div>
       </div>
       
-      {/* Section divider */}
+      {/* Section divider - fixed */}
       <div className="absolute bottom-0 left-0 right-0 section-divider">
         <svg className="section-divider-tilt" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z"></path>
+          <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" fill="currentColor"></path>
         </svg>
       </div>
     </section>

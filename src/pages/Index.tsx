@@ -85,6 +85,9 @@ const Index = () => {
       </main>
       
       <Footer />
+      
+      {/* Load the audio widget script */}
+      <script src="/src/components/AudioWidget.js" async></script>
     </div>
   );
 };
